@@ -33,6 +33,24 @@ const projects = [
     liveUrl: "http://xtrain-landingpage.vercel.app/",
     githubUrl: "#",
   },
+  {
+    title: "WildGuard",
+    description:
+      "An AI-powered real-time wildlife detection and alert system that protects communities near forest areas through smart monitoring and instant emergency notifications.",
+    techStack: ["HTML", "CSS", "Javascript", "Django", "CNN", "Google Teachable Machine", "SQLite"],
+    image: "/images/projects/wildguard.png",
+    liveUrl: "https://wildguard.pythonanywhere.com/",
+    githubUrl: "#",
+  },
+  {
+    title: "MediCare",
+    description:
+      "A QR-powered outpatient queue management system that streamlines hospital check-ins, reduces wait times, and enhances patient care with real-time tracking and instant alerts.",
+    techStack: ["HTML", "CSS", "Javascript", "Django", "SQLite"],
+    image: "/images/projects/medicare.png",
+    liveUrl: "https://medicare-czh6.onrender.com",
+    githubUrl: "#",
+  },
 ]
 
 function ProjectCard({
