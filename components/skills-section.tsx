@@ -111,7 +111,7 @@ export function SkillsSection() {
       <div className="max-w-5xl mx-auto">
         <div ref={ref} className={cn("text-center mb-16 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
           <p className="text-primary font-mono text-sm tracking-wider uppercase mb-3">Skills</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground text-balance">
             Technologies <span className="text-primary">{"&"}</span> Tools
           </h2>
         </div>

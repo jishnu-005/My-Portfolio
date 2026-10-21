@@ -1,6 +1,7 @@
 "use client"
 
 import Image from "next/image"
+import type { CSSProperties } from "react"
 import { useScrollReveal } from "@/hooks/use-scroll-reveal"
 import { cn } from "@/lib/utils"
 import { ExternalLink, Github } from "lucide-react"
@@ -60,67 +61,72 @@ function ProjectCard({
   project: (typeof projects)[0]
   index: number
 }) {
-  const { ref, isVisible } = useScrollReveal(0.15)
+  const imageOnRight = index % 2 === 1
 
   return (
-    <div
-      ref={ref}
-      className={cn(
-        "group relative p-6 rounded-xl border border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:border-primary/30 hover:bg-primary/5 hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5",
-        isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-      )}
-      style={{ transitionDelay: `${index * 100}ms` }}
+    <article
+      className="project-sticky-card group relative min-w-0 overflow-hidden rounded-2xl border border-border/70 bg-card shadow-lg shadow-background/10 transition-[border-color,box-shadow] duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10"
+      style={{ "--stack-index": index } as CSSProperties}
     >
-      {/* Glow effect on hover */}
-      <div className="absolute inset-0 rounded-xl bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-xl -z-10" aria-hidden="true" />
+      <div className="grid min-w-0 grid-cols-1 md:grid-cols-2 md:items-stretch">
+        {/* Alternate the screenshot between left and right on wider screens. */}
+        <div className={cn(
+          "relative min-h-[210px] w-full overflow-hidden bg-muted sm:min-h-[260px] md:min-h-[340px]",
+          imageOnRight && "md:order-2"
+        )}>
+          <Image
+            src={project.image}
+            alt={`${project.title} project screenshot`}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 767px) 100vw, (max-width: 1200px) 50vw, 560px"
+          />
+          <div className="absolute inset-0 bg-background/10 transition-colors duration-500 group-hover:bg-transparent" aria-hidden="true" />
+        </div>
 
-      {/* Project Image */}
-      <div className="relative w-full h-44 rounded-lg overflow-hidden mb-5 border border-border/30">
-        <Image
-          src={project.image}
-          alt={`${project.title} project screenshot`}
-          fill
-          className="object-cover transition-transform duration-500 group-hover:scale-110"
-          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-        />
-        <div className="absolute inset-0 bg-background/20 group-hover:bg-transparent transition-colors duration-500" />
+        <div className={cn(
+          "flex min-w-0 flex-col justify-center p-5 sm:p-7 lg:p-9",
+          imageOnRight && "md:order-1"
+        )}>
+          <h3 className="mb-3 text-xl font-bold text-foreground transition-colors duration-300 group-hover:text-primary sm:text-2xl">
+            {project.title}
+          </h3>
+          <p className="mb-5 text-sm leading-relaxed text-muted-foreground sm:text-base">
+            {project.description}
+          </p>
+
+          <div className="mb-6 flex flex-wrap gap-2">
+            {project.techStack.map((tech) => (
+              <span
+                key={tech}
+                className="rounded-full border border-primary/20 bg-primary/5 px-3 py-1 font-mono text-xs text-primary"
+              >
+                {tech}
+              </span>
+            ))}
+          </div>
+
+          <div className="flex flex-wrap items-center gap-3">
+            <a
+              href={project.liveUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all duration-300 hover:shadow-md hover:shadow-primary/25"
+            >
+              <ExternalLink className="h-4 w-4" aria-hidden="true" />
+              Live
+            </a>
+            {/* <a
+              href={project.githubUrl}
+              className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:border-primary/50 hover:text-primary"
+            >
+              <Github className="h-4 w-4" aria-hidden="true" />
+              GitHub
+            </a> */}
+          </div>
+        </div>
       </div>
-
-      <h3 className="text-xl font-bold text-foreground mb-3 group-hover:text-primary transition-colors duration-300">
-        {project.title}
-      </h3>
-      <p className="text-sm text-muted-foreground leading-relaxed mb-5">
-        {project.description}
-      </p>
-
-      <div className="flex flex-wrap gap-2 mb-6">
-        {project.techStack.map((tech) => (
-          <span
-            key={tech}
-            className="px-3 py-1 text-xs font-mono rounded-full border border-primary/20 bg-primary/5 text-primary"
-          >
-            {tech}
-          </span>
-        ))}
-      </div>
-
-      <div className="flex items-center gap-3">
-        <a
-          href={project.liveUrl}
-          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-primary-foreground bg-primary rounded-lg transition-all duration-300 hover:shadow-md hover:shadow-primary/25"
-        >
-          <ExternalLink className="h-3.5 w-3.5" />
-          Live Demo
-        </a>
-        <a
-          href={project.githubUrl}
-          className="inline-flex items-center gap-2 px-4 py-2 text-sm font-medium text-foreground border border-border rounded-lg transition-all duration-300 hover:border-primary/50 hover:text-primary"
-        >
-          <Github className="h-3.5 w-3.5" />
-          GitHub
-        </a>
-      </div>
-    </div>
+    </article>
   )
 }
 
@@ -128,16 +134,16 @@ export function ProjectsSection() {
   const { ref, isVisible } = useScrollReveal()
 
   return (
-    <section id="projects" className="relative py-24 px-6">
+    <section id="projects" className="relative px-4 py-20 sm:px-6 sm:py-24">
       <div className="max-w-5xl mx-auto">
         <div ref={ref} className={cn("text-center mb-16 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
           <p className="text-primary font-mono text-sm tracking-wider uppercase mb-3">Projects</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground text-balance">
             Featured <span className="text-primary">Work</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="project-sticky-stack mx-auto max-w-6xl">
           {projects.map((project, index) => (
             <ProjectCard key={project.title} project={project} index={index} />
           ))}

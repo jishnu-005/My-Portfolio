@@ -55,7 +55,7 @@ export function HeroSection() {
           Available for freelance work
         </div>
 
-        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold tracking-tight text-foreground mb-6 animate-fade-up text-balance" style={{ animationDelay: "0.1s" }}>
+        <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold font-display tracking-[-0.06em] leading-[0.98] text-foreground mb-6 animate-fade-up text-balance" style={{ animationDelay: "0.1s" }}>
           Full-Stack Developer{" "}
           <span className="text-primary">{"&"}</span>{" "}
           <br className="hidden sm:block" />

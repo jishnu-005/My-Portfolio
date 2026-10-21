@@ -9,7 +9,6 @@ import { SkillsSection } from "@/components/skills-section"
 import { ProjectsSection } from "@/components/projects-section"
 import { ContactSection } from "@/components/contact-section"
 import { Footer } from "@/components/footer"
-import { ThemeToggle } from "@/components/theme-toggle"
 
 export default function Page() {
   return (
@@ -40,7 +39,6 @@ export default function Page() {
         <ContactSection />
       </main>
       <Footer />
-      <ThemeToggle />
     </>
   )
 }

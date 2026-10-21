@@ -1,6 +1,5 @@
 "use client"
 
-import { useRef } from "react"
 import {
   Shield,
   Code2,
@@ -18,9 +17,9 @@ const services = [
     title: "Full-Stack Development",
     description:
       "Building end-to-end web applications with modern frameworks, scalable APIs, and clean architecture.",
-    accent: "from-teal-500/20 to-cyan-500/20",
-    iconBg: "bg-teal-500/15 text-teal-400 group-hover:bg-teal-500/25",
-    borderHover: "hover:border-teal-500/40",
+    accent: "from-orange-500/10 to-amber-100/20",
+    iconBg: "bg-orange-500/10 text-orange-700 group-hover:bg-orange-500/20",
+    borderHover: "hover:border-orange-500/40",
     number: "01",
   },
   {
@@ -28,9 +27,9 @@ const services = [
     title: "Penetration Testing",
     description:
       "Identifying vulnerabilities through ethical hacking, security assessments, and comprehensive reporting.",
-    accent: "from-red-500/20 to-orange-500/20",
-    iconBg: "bg-red-500/15 text-red-400 group-hover:bg-red-500/25",
-    borderHover: "hover:border-red-500/40",
+    accent: "from-orange-500/10 to-amber-100/20",
+    iconBg: "bg-orange-500/10 text-orange-700 group-hover:bg-orange-500/20",
+    borderHover: "hover:border-orange-500/40",
     number: "02",
   },
   {
@@ -38,9 +37,9 @@ const services = [
     title: "Web Applications",
     description:
       "Creating responsive, high-performance web apps with seamless user experiences and real-time capabilities.",
-    accent: "from-blue-500/20 to-indigo-500/20",
-    iconBg: "bg-blue-500/15 text-blue-400 group-hover:bg-blue-500/25",
-    borderHover: "hover:border-blue-500/40",
+    accent: "from-orange-500/10 to-amber-100/20",
+    iconBg: "bg-orange-500/10 text-orange-700 group-hover:bg-orange-500/20",
+    borderHover: "hover:border-orange-500/40",
     number: "03",
   },
   {
@@ -48,9 +47,9 @@ const services = [
     title: "Landing Pages",
     description:
       "Designing conversion-focused landing pages with compelling visuals, fast loading, and SEO optimization.",
-    accent: "from-emerald-500/20 to-green-500/20",
-    iconBg: "bg-emerald-500/15 text-emerald-400 group-hover:bg-emerald-500/25",
-    borderHover: "hover:border-emerald-500/40",
+    accent: "from-orange-500/10 to-amber-100/20",
+    iconBg: "bg-orange-500/10 text-orange-700 group-hover:bg-orange-500/20",
+    borderHover: "hover:border-orange-500/40",
     number: "04",
   },
   {
@@ -58,9 +57,9 @@ const services = [
     title: "Custom Softwares",
     description:
       "Developing tailored software solutions to automate workflows, manage data, and solve unique business problems.",
-    accent: "from-amber-500/20 to-yellow-500/20",
-    iconBg: "bg-amber-500/15 text-amber-400 group-hover:bg-amber-500/25",
-    borderHover: "hover:border-amber-500/40",
+    accent: "from-orange-500/10 to-amber-100/20",
+    iconBg: "bg-orange-500/10 text-orange-700 group-hover:bg-orange-500/20",
+    borderHover: "hover:border-orange-500/40",
     number: "05",
   },
   {
@@ -68,9 +67,9 @@ const services = [
     title: "E-Commerce Websites",
     description:
       "Building secure online stores with payment integration, inventory management, and optimized checkout flows.",
-    accent: "from-pink-500/20 to-rose-500/20",
-    iconBg: "bg-pink-500/15 text-pink-400 group-hover:bg-pink-500/25",
-    borderHover: "hover:border-pink-500/40",
+    accent: "from-orange-500/10 to-amber-100/20",
+    iconBg: "bg-orange-500/10 text-orange-700 group-hover:bg-orange-500/20",
+    borderHover: "hover:border-orange-500/40",
     number: "06",
   },
 ]
@@ -150,7 +149,6 @@ function ServiceCard({
 
 export function AboutSection() {
   const { ref, isVisible } = useScrollReveal()
-  const statsRef = useRef<HTMLDivElement>(null)
 
   return (
     <section id="about" className="relative py-28 px-6">
@@ -166,7 +164,7 @@ export function AboutSection() {
             <p className="text-primary font-mono text-sm tracking-wider uppercase mb-3">
               // About Me
             </p>
-            <h2 className="text-3xl md:text-5xl font-bold text-foreground text-balance leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold font-display text-foreground text-balance leading-tight">
               Crafting <span className="text-primary">secure</span> &{" "}
               <span className="text-primary">scalable</span> digital solutions
             </h2>
@@ -184,34 +182,6 @@ export function AboutSection() {
               production-ready.
             </p>
           </div>
-        </div>
-
-        {/* Stats row */}
-        <div
-          ref={statsRef}
-          className={cn(
-            "grid grid-cols-2 md:grid-cols-4 gap-4 mb-16 transition-all duration-700 delay-200",
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-          )}
-        >
-          {[
-            { value: "20+", label: "Projects Completed" },
-            { value: "20+", label: "Happy Clients" },
-            { value: "1+", label: "Years Experience" },
-            { value: "99%", label: "Client Satisfaction" },
-          ].map((stat) => (
-            <div
-              key={stat.label}
-              className="relative text-center p-5 rounded-xl border border-border/40 bg-card/40 backdrop-blur-sm"
-            >
-              <p className="text-3xl md:text-4xl font-black text-primary font-mono tracking-tight">
-                {stat.value}
-              </p>
-              <p className="mt-1 text-xs md:text-sm text-muted-foreground uppercase tracking-wider">
-                {stat.label}
-              </p>
-            </div>
-          ))}
         </div>
 
         {/* Service cards */}

@@ -63,7 +63,7 @@ export function ContactSection() {
       <div className="max-w-4xl mx-auto">
         <div ref={ref} className={cn("text-center mb-16 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
           <p className="text-primary font-mono text-sm tracking-wider uppercase mb-3">Contact</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground text-balance">
             {"Let's"} <span className="text-primary">Connect</span>
           </h2>
         </div>

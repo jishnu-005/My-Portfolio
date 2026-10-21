@@ -8,7 +8,7 @@ const educationData = [
   {
     degree: "Studying Advanced Diploma in Cyber Defense (ADCD)",
     institution: "Redteam Hacker Academy, Thrissur",
-    year: "2025 - Ongoing",
+    year: "2025 - 2026",
     description:
       "Advanced training in cyber defense, focusing on penetration testing, vulnerability assessment, and ethical hacking methodologies.",
   },
@@ -120,7 +120,7 @@ export function EducationSection() {
       <div className="max-w-4xl mx-auto">
         <div ref={ref} className={cn("text-center mb-16 transition-all duration-700", isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8")}>
           <p className="text-primary font-mono text-sm tracking-wider uppercase mb-3">Education</p>
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-balance">
+          <h2 className="text-3xl md:text-4xl font-bold font-display text-foreground text-balance">
             My Learning <span className="text-primary">Journey</span>
           </h2>
         </div>

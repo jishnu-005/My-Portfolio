@@ -37,13 +37,13 @@ export function AnimatedBackground() {
           vx: (Math.random() - 0.5) * 0.5,
           vy: (Math.random() - 0.5) * 0.5,
           size: Math.random() * 2 + 0.5,
-          opacity: Math.random() * 0.5 + 0.1,
+          opacity: Math.random() * 0.13 + 0.025,
         })
       }
     }
 
     const drawGrid = () => {
-      ctx.strokeStyle = "hsl(173 80% 40% / 0.04)"
+      ctx.strokeStyle = "hsl(19 100% 60% / 0.025)"
       ctx.lineWidth = 1
       const gridSize = 60
 
@@ -74,7 +74,7 @@ export function AnimatedBackground() {
 
         ctx.beginPath()
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2)
-        ctx.fillStyle = `hsl(173 80% 50% / ${p.opacity})`
+        ctx.fillStyle = `hsl(19 100% 60% / ${p.opacity})`
         ctx.fill()
       })
 
@@ -88,7 +88,7 @@ export function AnimatedBackground() {
             ctx.beginPath()
             ctx.moveTo(a.x, a.y)
             ctx.lineTo(b.x, b.y)
-            ctx.strokeStyle = `hsl(173 80% 50% / ${0.08 * (1 - dist / 120)})`
+            ctx.strokeStyle = `hsl(19 100% 60% / ${0.035 * (1 - dist / 120)})`
             ctx.lineWidth = 0.5
             ctx.stroke()
           }

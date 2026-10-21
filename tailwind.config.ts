@@ -68,7 +68,8 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       fontFamily: {
-        sans: ['var(--font-inter)'],
+        sans: ['var(--font-inter)', 'sans-serif'],
+        display: ['var(--font-space-grotesk)', 'var(--font-inter)', 'sans-serif'],
         mono: ['var(--font-jetbrains-mono)'],
       },
       keyframes: {
@@ -97,8 +98,8 @@ const config: Config = {
           '100%': { opacity: '1', transform: 'translateX(0)' },
         },
         'glow-pulse': {
-          '0%, 100%': { boxShadow: '0 0 20px hsl(173 80% 40% / 0.3)' },
-          '50%': { boxShadow: '0 0 40px hsl(173 80% 40% / 0.6)' },
+          '0%, 100%': { boxShadow: '0 0 20px hsl(19 100% 60% / 0.3)' },
+          '50%': { boxShadow: '0 0 40px hsl(19 100% 60% / 0.6)' },
         },
         'float': {
           '0%, 100%': { transform: 'translateY(0px)' },
@@ -110,7 +111,7 @@ const config: Config = {
         },
         'blink': {
           '0%, 100%': { borderColor: 'transparent' },
-          '50%': { borderColor: 'hsl(173 80% 40%)' },
+          '50%': { borderColor: 'hsl(19 100% 60%)' },
         },
         'grid-move': {
           '0%': { transform: 'translateY(0)' },
