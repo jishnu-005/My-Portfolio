@@ -8,7 +8,7 @@ const educationData = [
   {
     degree: "Studying Advanced Diploma in Cyber Defense (ADCD)",
     institution: "Redteam Hacker Academy, Thrissur",
-    year: "2025 - 2026",
+    year: "2025 - Ongoing",
     description:
       "Advanced training in cyber defense, focusing on penetration testing, vulnerability assessment, and ethical hacking methodologies.",
   },

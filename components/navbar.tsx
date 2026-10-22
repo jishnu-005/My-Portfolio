@@ -1,117 +1,74 @@
-"use client"
 
-import { useState, useEffect } from "react"
-import { Menu, X } from "lucide-react"
-import { cn } from "@/lib/utils"
+"use client";
 
-const navLinks = [
-  { label: "Home", href: "#home" },
+import { useState } from "react";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+
+const links = [
   { label: "About", href: "#about" },
-  { label: "Education", href: "#education" },
-  { label: "Skills", href: "#skills" },
+  { label: "Journey", href: "#education" },
+  { label: "Expertise", href: "#skills" },
   { label: "Projects", href: "#projects" },
-  { label: "Contact", href: "#contact" },
-]
+];
 
 export function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false)
-  const [isMobileOpen, setIsMobileOpen] = useState(false)
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [])
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileOpen) {
-      document.body.style.overflow = "hidden"
-    } else {
-      document.body.style.overflow = ""
-    }
-    return () => {
-      document.body.style.overflow = ""
-    }
-  }, [isMobileOpen])
+  const [open, setOpen] = useState(false);
 
   return (
-    <>
-      {/* Mobile overlay — rendered OUTSIDE the header to escape its stacking context */}
+    <header className="leap-nav">
+      <nav className="leap-nav-inner" aria-label="Main navigation">
+        <a
+          className="leap-logo"
+          href="#home"
+          onClick={() => setOpen(false)}
+          aria-label="Jishnu — home"
+        >
+          JISHNU<span className="leap-logo-dot">.</span>
+        </a>
+
+        <div className="leap-desktop-links">
+          {links.map((link) => (
+            <a key={link.href} href={link.href}>
+              {link.label}
+            </a>
+          ))}
+
+          <a className="leap-nav-contact" href="#contact">
+            Contact
+            <ArrowUpRight size={16} />
+          </a>
+        </div>
+
+        <button
+          type="button"
+          className="leap-menu-button"
+          aria-label={open ? "Close menu" : "Open menu"}
+          aria-expanded={open}
+          aria-controls="leap-mobile-navigation"
+          onClick={() => setOpen((v) => !v)}
+        >
+          {open ? <X size={25} /> : <Menu size={25} />}
+        </button>
+      </nav>
+
       <div
-        className={cn(
-          "fixed inset-0 bg-background/95 backdrop-blur-xl z-40 flex flex-col items-center justify-center gap-6 transition-opacity duration-500 md:hidden",
-          isMobileOpen
-            ? "opacity-100 pointer-events-auto"
-            : "opacity-0 pointer-events-none"
-        )}
+        id="leap-mobile-navigation"
+        className={`leap-mobile-links ${open ? "is-open" : ""}`}
+        inert={!open}
       >
-        {navLinks.map((link, i) => (
-          
-          <a key={link.href}
-            href={link.href}
-            onClick={() => setIsMobileOpen(false)}
-            className={cn(
-              "text-2xl font-medium text-foreground hover:text-primary transition-all duration-300",
-              isMobileOpen
-                ? "opacity-100 translate-y-0"
-                : "opacity-0 translate-y-5"
-            )}
-            style={{
-              transitionDelay: isMobileOpen ? `${i * 75}ms` : "0ms",
-            }}
-          >
-            {link.label}
-          </a>
-        ))}
+        {[...links, { label: "Contact", href: "#contact" }].map(
+          (link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setOpen(false)}
+            >
+              {link.label}
+              <ArrowUpRight size={18} />
+            </a>
+          )
+        )}
       </div>
-
-      <header
-        className={cn(
-          "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-          isScrolled
-            ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-lg shadow-primary/5"
-            : "bg-transparent"
-        )}
-      >
-        <nav className="max-w-6xl mx-auto flex items-center justify-between px-6 py-4">
-          
-          <a href="#home"
-            className="text-foreground font-bold text-xl tracking-tight hover:text-primary transition-colors duration-300 flex items-center gap-1"
-          >
-            <span className="text-primary font-mono">{">"}_</span>
-            <span>{"<"}</span>
-            <span className="text-primary">Jishnu</span>
-            <span>{"/>"}</span>
-          </a>
-
-          {/* Desktop nav */}
-          <ul className="hidden md:flex items-center gap-1">
-            {navLinks.map((link) => (
-              <li key={link.href}>
-                
-                <a href={link.href}
-                  className="relative px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors duration-300 rounded-lg hover:bg-primary/5 group"
-                >
-                  {link.label}
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-primary rounded-full transition-all duration-300 group-hover:w-6" />
-                </a>
-              </li>
-            ))}
-          </ul>
-
-          {/* Mobile hamburger — z-50 so it sits above the overlay */}
-          <button
-            onClick={() => setIsMobileOpen(!isMobileOpen)}
-            className="md:hidden relative z-50 p-2 text-foreground hover:text-primary transition-colors"
-            aria-label={isMobileOpen ? "Close menu" : "Open menu"}
-          >
-            {isMobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </nav>
-      </header>
-    </>
-  )
+    </header>
+  );
 }

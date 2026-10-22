@@ -114,15 +114,15 @@ function ProjectCard({
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-all duration-300 hover:shadow-md hover:shadow-primary/25"
             >
               <ExternalLink className="h-4 w-4" aria-hidden="true" />
-              Live
+              Live Demo
             </a>
-            {/* <a
+            {project.githubUrl !== "#" && <a
               href={project.githubUrl}
               className="inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-all duration-300 hover:border-primary/50 hover:text-primary"
             >
               <Github className="h-4 w-4" aria-hidden="true" />
               GitHub
-            </a> */}
+            </a>}
           </div>
         </div>
       </div>
